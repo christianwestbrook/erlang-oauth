@@ -1,5 +1,5 @@
 SOURCE_FILES := $(wildcard src/*.erl)
-
+LIBDIR=`erl -eval 'io:format("~s~n", [code:lib_dir()])' -s init stop -noshell`
 
 all: ebin
 
@@ -15,3 +15,7 @@ ebin/%.beam: src/%.erl
 
 clean:
 	@rm -rf ebin erl_crash.dump
+
+install:
+	mkdir -p $(prefix)/$(LIBDIR)/erlang-oauth/ebin/
+	cp ebin/*beam $(prefix)/$(LIBDIR)/erlang-oauth/ebin/
