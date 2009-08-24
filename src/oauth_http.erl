@@ -18,7 +18,7 @@ post(URL, Data) ->
 request(Method, {URL, _} = _Req) when is_list(Method) ->
     lhttpc:request(URL, Method, [], ?TIMEOUT_MS);
 
-request(Method, {URL, Args, ContentType, PostData} = _Req) when is_list(Method) ->
+request(Method, {URL, _Args, ContentType, PostData} = _Req) when is_list(Method) ->
     Hdrs = lists:append(?HTTP_REQ_HEADERS, [{"Content-Type",ContentType}]),
     lhttpc:request(URL, Method, Hdrs, PostData, ?TIMEOUT_MS).
 
